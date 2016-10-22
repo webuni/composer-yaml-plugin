@@ -22,7 +22,7 @@
     "require-dev": {
         "phpunit/phpunit": "^4.8 || ^5.3",
         "symfony/var-dumper": "^3.0",
-        "fabpot/php-cs-fixer": "^1.11",
+        "friendsofphp/php-cs-fixer": "^1.11",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "composer/composer": "^1.1"
     },
@@ -31,7 +31,14 @@
             "Webuni\\ComposerYamlPlugin\\": "src"
         }
     },
+    "scripts": {
+        "cs": "vendor/bin/php-cs-fixer fix",
+        "tests": "vendor/bin/phpunit --colors=always"
+    },
     "extra": {
-        "class": "Webuni\\ComposerYamlPlugin\\Plugin"
+        "class": "Webuni\\ComposerYamlPlugin\\Plugin",
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
