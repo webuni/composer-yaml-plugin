@@ -13,7 +13,6 @@
 namespace Webuni\ComposerYamlPlugin;
 
 use Composer\Plugin\Capability\CommandProvider as CommandProviderCapability;
-use Composer\Plugin\Capability\Composer;
 
 final class CommandProvider implements CommandProviderCapability
 {
