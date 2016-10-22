@@ -2,6 +2,7 @@
     "name": "webuni/composer-yaml-plugin",
     "description": "Composer plugin to convert a composer.yml to json or vice-versa.",
     "keywords": ["composer", "yaml"],
+    "type": "composer-plugin",
     "license": "MIT",
     "authors": [
         {
