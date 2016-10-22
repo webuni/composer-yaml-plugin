@@ -69,6 +69,6 @@ final class PluginTest extends \PHPUnit_Framework_TestCase
         $output = new BufferedOutput();
 
         $app->doRun(new ArrayInput(['-d' => sys_get_temp_dir()]), $output);
-        $this->assertContains('yaml-convert    Converts a composer.yml to json or vice-versa', $output->fetch());
+        $this->assertRegExp('/yaml-convert +Converts a composer\.yml to json or vice-versa/', $output->fetch());
     }
 }
