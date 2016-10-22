@@ -56,6 +56,12 @@ final class YamlConvertCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('The input file "composer.json" does not exist.', $this->output->fetch());
     }
 
+    public function testInvalidFormat()
+    {
+        $this->app->run(new ArrayInput(['yaml-convert', 'input' => 'composer.json']), $this->output);
+        $this->assertContains('The input file "composer.json" does not exist.', $this->output->fetch());
+    }
+
     public function testSameFormat()
     {
         file_put_contents('composer.yml', 'name: package');
