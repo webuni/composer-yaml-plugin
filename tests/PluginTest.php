@@ -31,11 +31,10 @@ final class PluginTest extends \PHPUnit_Framework_TestCase
 
     public function testAddNewCommand()
     {
-        /* @var $pm PluginManager|\PHPUnit_Framework_MockObject_MockObject */
         $pm = $this
             ->getMockBuilder(PluginManager::class)
-            ->setMethods(['getPlugins'])
             ->disableOriginalConstructor()
+            ->setMethods(['getPlugins'])
             ->getMock()
         ;
 
@@ -54,8 +53,8 @@ final class PluginTest extends \PHPUnit_Framework_TestCase
 
         $this->plugin->activate($composer, new BufferIO());
 
-        /* @var $app Application|\PHPUnit_Framework_MockObject_MockObject */
-        $app = $this->getMockBuilder(Application::class)
+        $app = $this
+            ->getMockBuilder(Application::class)
             ->setMethods(['getComposer'])
             ->getMock()
         ;

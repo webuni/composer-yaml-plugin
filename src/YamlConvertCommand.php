@@ -48,18 +48,7 @@ final class YamlConvertCommand extends BaseCommand
             throw new \InvalidArgumentException(sprintf('The input file "%s" does not exist.', $data['input']));
         }
 
-        $formats = [];
-        foreach ($data as $type => $file) {
-            $format = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-            if (!isset($this->formats[$format])) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Invalid %s format "%s", must be one of: %s',
-                    $type, $format, implode(', ', array_keys($this->formats))
-                ));
-            }
-
-            $formats[$type] = $this->formats[$format];
-        }
+        $formats = $this->getFormats($data);
 
         if ($formats['input'] === $formats['output']) {
             throw new \InvalidArgumentException('Input format is same as output format.');
@@ -75,5 +64,23 @@ final class YamlConvertCommand extends BaseCommand
 
         file_put_contents($data['output'], $converted);
         $output->writeln(sprintf('Converted "%s" to "%s"', $data['input'], $data['output']));
+    }
+
+    private function getFormats(array $data)
+    {
+        $formats = [];
+        foreach ($data as $type => $file) {
+            $format = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            if (!isset($this->formats[$format])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Invalid %s format "%s", must be one of: %s',
+                    $type, $format, implode(', ', array_keys($this->formats))
+                ));
+            }
+
+            $formats[$type] = $this->formats[$format];
+        }
+
+        return $formats;
     }
 }
