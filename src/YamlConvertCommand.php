@@ -31,8 +31,8 @@ final class YamlConvertCommand extends BaseCommand
     {
         $this
             ->setName('yaml-convert')
-            ->setDescription('Converts a composer.yml to json or vice-versa')
-            ->addArgument('input', InputArgument::OPTIONAL, 'The input file', 'composer.yml')
+            ->setDescription('Converts a composer.yaml to json or vice-versa')
+            ->addArgument('input', InputArgument::OPTIONAL, 'The input file', 'composer.yaml')
             ->addArgument('output', InputArgument::OPTIONAL, 'The output file', 'composer.json')
         ;
     }
