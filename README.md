@@ -5,7 +5,7 @@ Composer YAML Plugin
 [![Build Status](https://travis-ci.org/webuni/composer-yaml-plugin.svg?branch=master)](https://travis-ci.org/webuni/composer-yaml-plugin)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/webuni/composer-yaml-plugin/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/webuni/composer-yaml-plugin/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/webuni/composer-yaml-plugin/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/webuni/composer-yaml-plugin/?branch=master)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/8fbbdeb9-d7ba-4c5c-8d88-db950a668265.svg?style=flat-square)](https://insight.sensiolabs.com/projects/8fbbdeb9-d7ba-4c5c-8d88-db950a668265)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/592c3803-ec6b-4685-b483-7c6bba0ec903.svg?style=flat-square)](https://insight.sensiolabs.com/projects/592c3803-ec6b-4685-b483-7c6bba0ec903)
 
 This plugin allows you to convert a composer.yaml file into composer.json format.
 It will use those exact filenames of your current working directory.
