@@ -12,12 +12,13 @@
 
 namespace Webuni\ComposerYamlPlugin\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Webuni\ComposerYamlPlugin\YamlConvertCommand;
 
-final class YamlConvertCommandTest extends \PHPUnit_Framework_TestCase
+final class YamlConvertCommandTest extends TestCase
 {
     private $app;
     private $buffer;

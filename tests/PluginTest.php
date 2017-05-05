@@ -16,11 +16,12 @@ use Composer\Composer;
 use Composer\Console\Application;
 use Composer\IO\BufferIO;
 use Composer\Plugin\PluginManager;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Webuni\ComposerYamlPlugin\Plugin;
 
-final class PluginTest extends \PHPUnit_Framework_TestCase
+final class PluginTest extends TestCase
 {
     private $plugin;
 
