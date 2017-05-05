@@ -21,13 +21,13 @@ Installation
 Usage
 -----
 
-To convert from yaml to json, run:
+To convert from yaml (`composer.yaml` or `composer.yam`) to json (`composer.json`), run:
 
     $ composer yaml-convert
 
 To convert from json to yaml, run:
 
-    $ composer yaml-convert composer.json composer.yml
+    $ composer yaml-convert composer.json
 
 Alternatives
 ------------

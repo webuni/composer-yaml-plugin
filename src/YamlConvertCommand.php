@@ -32,55 +32,73 @@ final class YamlConvertCommand extends BaseCommand
         $this
             ->setName('yaml-convert')
             ->setDescription('Converts a composer.yaml to json or vice-versa')
-            ->addArgument('input', InputArgument::OPTIONAL, 'The input file', 'composer.yaml')
-            ->addArgument('output', InputArgument::OPTIONAL, 'The output file', 'composer.json')
+            ->addArgument('input', InputArgument::OPTIONAL, 'The input file')
+            ->addArgument('output', InputArgument::OPTIONAL, 'The output file')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $data = [
+        $files = $this->getFiles([
             'input' => $input->getArgument('input'),
             'output' => $input->getArgument('output'),
-        ];
+        ]);
 
-        if (!is_file($data['input'])) {
-            throw new \InvalidArgumentException(sprintf('The input file "%s" does not exist.', $data['input']));
+        $from = $this->getFormat($files['input'], 'input');
+
+        if (!is_file($files['input'])) {
+            throw new \InvalidArgumentException(sprintf('The input file "%s" does not exist.', $files['input']));
         }
 
-        $formats = $this->getFormats($data);
+        if (null === $files['output']) {
+            $files['output'] = 'json' === $from ? 'composer.yaml' : 'composer.json';
+        } else {
+            $to = $this->getFormat($files['output'], 'output');
 
-        if ($formats['input'] === $formats['output']) {
-            throw new \InvalidArgumentException('Input format is same as output format.');
+            if ($from === $to) {
+                throw new \InvalidArgumentException(sprintf('Input format "%s" is same as output format.', $from));
+            }
         }
 
-        $content = file_get_contents($data['input']);
+        $content = file_get_contents($files['input']);
 
-        if ('json' === $formats['input']) {
+        if ('json' === $from) {
             $converted = Yaml::dump(JsonFile::parseJson($content));
         } else {
             $converted = JsonFile::encode(Yaml::parse($content));
         }
 
-        file_put_contents($data['output'], $converted);
-        $output->writeln(sprintf('Converted "%s" to "%s"', $data['input'], $data['output']));
+        file_put_contents($files['output'], $converted);
+        $output->writeln(sprintf('Converted "%s" to "%s"', $files['input'], $files['output']));
     }
 
-    private function getFormats(array $data)
+    private function getFiles(array $data)
     {
-        $formats = [];
-        foreach ($data as $type => $file) {
-            $format = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-            if (!isset($this->formats[$format])) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Invalid %s format "%s", must be one of: %s',
-                    $type, $format, implode(', ', array_keys($this->formats))
-                ));
-            }
-
-            $formats[$type] = $this->formats[$format];
+        if ((null === $data['input']) && (null === $data['output'])) {
+            $data['output'] = 'composer.json';
         }
 
-        return $formats;
+        if ((null === $data['input']) && is_file('composer.yml')) {
+            $data['input'] = 'composer.yml';
+        }
+
+        if (null === $data['input']) {
+            $data['input'] = 'composer.yaml';
+        }
+
+        return $data;
+    }
+
+    private function getFormat($file, $type)
+    {
+        $format = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        if (!isset($this->formats[$format])) {
+            throw new \InvalidArgumentException(sprintf(
+                'Invalid %s format "%s", must be one of: %s.',
+                $type, $format, implode(', ', array_keys($this->formats))
+            ));
+        }
+
+        return $this->formats[$format];
     }
 }
