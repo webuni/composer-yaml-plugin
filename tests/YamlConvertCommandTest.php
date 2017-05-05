@@ -72,7 +72,7 @@ final class YamlConvertCommandTest extends CompatibleTestsCase
         $this->app->run(new ArrayInput(['yaml-convert']), $this->buffer);
         $this->assertContains('Converted "composer.yaml" to "composer.json"', $this->buffer->fetch());
         $this->assertFileExists('composer.json');
-        $this->assertEquals("{\n    \"name\": \"package\"\n}", file_get_contents('composer.json'));
+        $this->assertEquals("{\n    \"name\": \"package\"\n}\n", file_get_contents('composer.json'));
     }
 
     public function testConvertYmlToJson()
@@ -81,7 +81,7 @@ final class YamlConvertCommandTest extends CompatibleTestsCase
         $this->app->run(new ArrayInput(['yaml-convert']), $this->buffer);
         $this->assertContains('Converted "composer.yml" to "composer.json"', $this->buffer->fetch());
         $this->assertFileExists('composer.json');
-        $this->assertEquals("{\n    \"name\": \"package\"\n}", file_get_contents('composer.json'));
+        $this->assertEquals("{\n    \"name\": \"package\"\n}\n", file_get_contents('composer.json'));
     }
 
     public function testConvertJsonToYaml()

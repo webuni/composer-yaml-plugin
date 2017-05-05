@@ -65,7 +65,7 @@ final class YamlConvertCommand extends BaseCommand
         if ('json' === $from) {
             $converted = Yaml::dump(JsonFile::parseJson($content));
         } else {
-            $converted = JsonFile::encode(Yaml::parse($content));
+            $converted = JsonFile::encode(Yaml::parse($content))."\n";
         }
 
         file_put_contents($files['output'], $converted);
