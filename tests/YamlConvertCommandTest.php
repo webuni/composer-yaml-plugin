@@ -45,7 +45,7 @@ final class YamlConvertCommandTest extends TestCase
     public function testDefaultInputFileDoesNotExists()
     {
         $this->app->run(new ArrayInput(['yaml-convert']), $this->buffer);
-        $this->assertContains('The input file "composer.yml" does not exist.', $this->buffer->fetch());
+        $this->assertContains('The input file "composer.yaml" does not exist.', $this->buffer->fetch());
     }
 
     public function testCustomInputFileDoesNotExists()
@@ -63,7 +63,7 @@ final class YamlConvertCommandTest extends TestCase
     public function testSameFormat()
     {
         file_put_contents('composer.yml', 'name: package');
-        $this->app->run(new ArrayInput(['yaml-convert', 'output' => 'composer.yml']), $this->buffer);
+        $this->app->run(new ArrayInput(['yaml-convert', 'output' => 'composer.yaml']), $this->buffer);
         $this->assertContains('Input format is same as output format.', $this->buffer->fetch());
     }
 

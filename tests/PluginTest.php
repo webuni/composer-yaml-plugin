@@ -69,6 +69,6 @@ final class PluginTest extends TestCase
         $output = new BufferedOutput();
 
         $app->doRun(new ArrayInput(['-d' => sys_get_temp_dir()]), $output);
-        $this->assertRegExp('/yaml-convert +Converts a composer\.yml to json or vice-versa/', $output->fetch());
+        $this->assertRegExp('/yaml-convert +Converts a composer\.yaml to json or vice-versa/', $output->fetch());
     }
 }
