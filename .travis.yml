@@ -10,10 +10,11 @@ php:
   - 5.5
   - 5.6
   - 7.0
-  - hhvm
+  - 7.1
+  - hhvm-3.18
 
 before_script:
-  - if [ $TRAVIS_PHP_VERSION = '7.0' ]; then PHPUNIT_COVERAGE="--coverage-clover=coverage.clover"; fi
+  - if [ $TRAVIS_PHP_VERSION = '7.1' ]; then PHPUNIT_COVERAGE="--coverage-clover=coverage.clover"; fi
   - if [ $TRAVIS_PHP_VERSION = '5.5' ]; then COMPOSER_FLAGS="--prefer-lowest"; fi
   - composer self-update
   - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
@@ -22,4 +23,4 @@ script:
   - vendor/bin/phpunit $PHPUNIT_COVERAGE
 
 after_script:
-  - if [[ "$PHPUNIT_COVERAGE" != "" ]]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+  - if [ "$PHPUNIT_COVERAGE" != "" ]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
