@@ -32,6 +32,7 @@ Alternatives
 ------------
 
 - https://github.com/igorw/composer-yaml
+- https://github.com/webuni/composer-neon-plugin
 
 License
 -------
