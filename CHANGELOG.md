@@ -1,8 +1,13 @@
 CHANGELOG
 =========
 
-2.0.0. (2017-05-15)
--------------------
+2.1.0 (2018-01-02)
+------------------
+
+ * Add support for Symfony 4 components
+
+2.0.0 (2017-05-15)
+------------------
 
  * Add a newline as the last character in composer.json
  * Added composer.yaml
