@@ -20,7 +20,7 @@ Installation
 Usage
 -----
 
-To convert from yaml (`composer.yaml` or `composer.yam`) to json (`composer.json`), run:
+To convert from yaml (`composer.yaml` or `composer.yml`) to json (`composer.json`), run:
 
     $ composer yaml-convert
 
